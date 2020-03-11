@@ -1,0 +1,108 @@
+<div class="container-fluid">
+    <div class="ui-g">
+        <div class="ui-g-4"><i style="margin:3px 3px 0 0"></i>
+          <input
+            class="form-control"
+            type="text"
+            pInputText
+            placeholder="Search by name "
+            (input)="search.filterGlobal($event.target.value, 'contains')"
+          /></div>
+          <div class="ui-g-4" style="padding-top: 25px;float:right !important"></div>
+        <div class="ui-g-4" style="padding-top: 25px;float:right !important">
+          <span style="float: right;overflow: hidden;text-overflow: ellipsis;">
+          <button
+            type="button"
+            (click)="showDialog('add')"
+            pButton
+            label="Add Department"
+          ></button
+        >
+      </span>
+      </div>
+    </div>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+     <p-table #search [value]="arrDept" [paginator]="true" [rows]="25" [globalFilterFields]="['name']" [responsive]="true" [scrollable]="true" scrollHeight="680px">
+    <!-- <ng-template pTemplate="caption">
+      <div style="text-align: left; padding-top: 20px;">
+         <i style="margin:3px 3px 0 0"></i>
+          <input
+              type="text"
+              pInputText
+              size="10"
+              placeholder="Search by name "
+              (input)="search.filterGlobal($event.target.value, 'contains')"
+              style="width:20%;"/>
+              <span style="float: right"><button  type="button" (click)="showDialog('add')" pButton  label="Add Department"></button></span>
+            </div>
+       </ng-template> -->
+    <ng-template pTemplate="header">
+      <tr class="my-center-text">
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-dept>
+      <tr >
+          <td ><span class="ui-column-title">Name</span>{{dept.name}}</td>
+          <td><span class="ui-column-title">Description</span>{{dept.description}}</td>
+          <td class="iconaligncenter">
+              <span class="ui-column-title">Actions</span>
+            <i  class="pi pi-user-edit" style="cursor: pointer;" (click)="openEdit('edit',dept)"></i> |
+            <i  class="pi pi-trash" style="cursor: pointer;" (click)="confirmDelete(dept.id)"></i>
+          </td>
+      </tr>
+   </ng-template>
+</p-table>
+
+<p-dialog header="Add/Edit Department" [(visible)]="display"  modal =false; [responsive]="true" >
+  <div class="modal-body">
+    <form [formGroup]="deptForm" (ngSubmit)='onFormSubmit(deptForm)' >
+      <div class="ui-g-12">
+        <div class="row">
+          <div class="ui-md-6">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <div class="">
+                <input
+                  class="form-control"
+                  formControlName="name"
+                  placeholder="Name"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="ui-md-6">
+            <div class="form-group">
+              <label for="description">Description</label>
+              <div class="">
+                <input
+                  class="form-control"
+                  formControlName="description"
+                  placeholder="description"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="ui-md-6">
+              <div class="form-group">
+            <button
+              type="submit"
+              class="btn btn-outline-dark float"
+            >
+              {{ selectedDepartmentOption }}
+            </button>
+          </div>
+        </div>
+        </div>
+      </div>
+         </form>
+  </div>
+</p-dialog>
+<p-confirmDialog [style]="{width:'50vw'}"></p-confirmDialog >
+</div>
+
+

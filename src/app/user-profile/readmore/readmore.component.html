@@ -1,0 +1,27 @@
+<br><br>
+<div class="container">
+  <p-panel>
+    <p-header>
+      <a class="pull-left" >
+        <img src="/assets/profile_img.jpg" alt="profile-picture" class="avatar" style=" width:65px; border-radius:50%;float:left;">
+      </a>
+      <div class="media-body">
+       <small>Created By:<span class="font-bold"></span></small><br>
+       <small class="text-muted">Date:{{read_more?.createdDate}}</small><br>
+        <small class="text-muted"></small>
+      </div>
+    </p-header>
+    <div>
+      <h3 class=" title">{{read_more?.articleName}}</h3>
+    </div>
+    <h2 >{{read_more?.previewContent}}</h2>
+    <p [innerHtml]="read_more?.content"></p>
+    <p-footer>
+      <div class="container">
+        <button *ngIf="read_more?.createdBy==1" class="btn btn-info btn-sm"  (click)="onEditArticle(read_more)" ><i class="fa fa-pencil"></i> Edit</button>
+        <button type="button" class="btn btn-warning btn-sm text-white btn-cancel" (click)='onClickClose()'>Back</button> <br/>
+      </div>
+    </p-footer>
+  </p-panel>
+</div>
+

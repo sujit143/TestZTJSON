@@ -1,0 +1,142 @@
+.col-md-4.container1 {
+  height: 1077px;
+  width: 100%;
+  background-color:white;
+}
+.col-md-8.container2 {
+  height: 1077px;
+  width: 100%;
+  background-color: #074282;
+}
+
+.sub-container1 {
+
+  height: 890px;
+  width: auto;
+  margin: 92px auto;
+
+}
+
+.Main-text-container{
+
+  height: 353px;
+    width: 100%;
+    // background-color: aliceblue;
+}
+
+.Img-container{
+
+}
+
+img {
+    height: inherit;
+    width: 78%;
+    margin-left: 51px;
+}
+.zoom-logo.img {
+  height: 69px;
+  margin-left: 42px;
+  width: 87%;
+}
+
+.text-content {
+  margin-top: 37px;
+}
+small.first-line {
+  font-size: 34px;
+  margin-left: 104px;
+  font-weight: 600;
+  /* text-align: center; */
+  color:  #074282;
+}
+
+small.first-line1 {
+  /* text-align: center; */
+  margin-left: 221px;
+  font-size: 34px;
+  font-weight: 600;
+  color: #074282;
+}
+
+small.second-line {
+  font-size: 20px;
+  color: #617f9a;
+  margin-left: 124px;
+}
+
+small.second-line2 {
+  margin-left: 146px;
+  font-size: 20px;
+  color: #617f9a;
+
+}
+.login-card {
+  height: 461px;
+  width: 39%;
+
+  margin: 219px auto;
+}
+.zlogo {
+  height: 115px;
+  width: 100%;
+
+}
+.controls {
+  margin-top: -45px;
+  margin-left: 57px;
+}
+input.input-control {
+  padding: 7px 88px;
+    border-radius: 8px;
+  border: none;
+}
+.form-check {
+  position: relative;
+  display: block;
+  padding-left: 1.25rem;
+  color: white;
+  font-size: 17px;
+  /* border-radius: 22px; */
+  font-weight: 700;
+  margin-top: -1px;
+}
+button.login-button {
+  padding: 5px 29px;
+  border: none;
+  background-color: white;
+  color:  #074282;
+  border-radius: 10px;
+  font-weight: 700;
+}
+a {
+  color: white;
+  font-weight: 400;
+}
+span.others {
+  font-size: 15px;
+  color: white;
+}
+
+
+.form-control {
+background-color: white;
+  width: 77%;
+  color: rgb(12, 12, 12);
+
+}
+label.text {
+  color: red;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height:20px;
+  width: 25px;
+  background-color: #eee;
+}
+.rememberMe{
+  color: white;
+}
+

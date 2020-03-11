@@ -1,0 +1,152 @@
+<app-typography></app-typography>
+<div style="padding-left: 24px; padding-right: 18px;margin-top: 16px;">
+  <div *ngIf="!datanotfound">
+    <p-table [value]="arrDept" [rows]="19" [responsive]="true" class="stripped">
+
+
+      <ng-template pTemplate="header" pTemplate="body" let-dept>
+        <tr>
+          <th><b>Manage Organization</b>
+          </th>
+          <th>
+          </th>
+          <th>
+          </th>
+          <th>
+       <span style="float: right">
+              <button type="button" (click)="openEdit()" label="Add/Edit Organization" class="btn btn-warning">Add/Edit
+                Organization</button>
+            </span>
+          </th>
+        </tr>
+        
+        <tr>
+          <th> <small class="formlabel">Name</small> <br> {{dept.name}}</th>
+          <th> <small class="formlabel">Description</small> <br> {{dept.description}}</th>
+          <th></th>
+          <th></th>
+        </tr>
+
+        <tr>
+          <th><small class="formlabel">Registered Address 1 </small><br> {{dept.registeredaddress1}}</th>
+          <th><small class="formlabel">Registered Address 2 </small><br> {{dept.registeredaddress2}}</th>
+          <th><small class="formlabel">City</small> <br> {{dept.city}}</th>
+          <th><small class="formlabel">State</small> <br> {{dept.state}}</th>
+        </tr>
+
+        <tr>
+          <th><small class="formlabel">Zip</small> <br> {{dept.zip}}</th>
+          <th><small class="formlabel">Country</small> <br> {{dept.country}}</th>
+          <th><small class="formlabel">Phone1</small> <br> {{dept.phone1}}</th>
+          <th></th>
+        </tr>
+
+        <tr>
+          <th><small class="formlabel">Phone2</small> <br>{{dept.phone2}}</th>
+          <th><small class="formlabel">Website</small> <br>{{dept.website}}</th>
+          <th><small class="formlabel">Fax</small> <br>{{dept.fax}}</th>
+          <th></th>
+        </tr>
+      </ng-template>
+
+    </p-table>
+
+    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+    <p-progressBar *ngIf="isProgress" mode="indeterminate"></p-progressBar>
+
+    <p-dialog header="Add/Edit Organization" [(visible)]="display" [resizable]="false" [responsive]="true"
+      [modal]="true" [draggable]="false" [baseZIndex]="10000">
+      <div class="modal-body scrollit">
+        <form [formGroup]="deptForm" (ngSubmit)='onFormSubmit()'>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Organization Name</label>
+              <input class="form-control" formControlName="name" placeholder="Name">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Description</label>
+              <input class="form-control" formControlName="description" placeholder="Description">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Registered Address 1</label>
+              <input class="form-control" formControlName="registeredaddress1" placeholder="Registered Address 1">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Registered Address 2</label>
+              <input class="form-control" formControlName="registeredaddress2" placeholder="Registered Address 2">
+            </div>
+            <div class="form-group col-md-4">
+              <label>City</label>
+              <input class="form-control" formControlName="city" placeholder="City">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>State</label>
+              <input class="form-control" formControlName="state" placeholder="State">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Zip Code</label>
+              <input class="form-control" formControlName="zip" placeholder="Zipcode">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Country</label>
+              <input class="form-control" formControlName="country" placeholder="Country">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Website</label>
+              <input class="form-control" formControlName="website" placeholder="Website">
+            </div>
+            <div class="form-group col-md-4">
+              <label>phone 1</label>
+              <input class="form-control" formControlName="phone1" placeholder="Phone1">
+            </div>
+            <div class="form-group col-md-4">
+              <label>phone 2</label>
+              <input class="form-control" formControlName="phone2" placeholder="Phone2">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Fax</label>
+              <input class="form-control" formControlName="fax" placeholder="Fax">
+            </div>
+            <div class="form-group col-md-4">
+              <span
+                class="ng-star-inserted ui-button ui-fileupload-choose ui-widget ui-state-default ui-corner-all ui-button-text-icon-left btn-primary"
+                style="margin-top:28px;">
+
+                <span class="ui-button-text ui-clickable">Upload Logo</span>
+              </span>
+              <input type="file" accept="image/*" class="ng-star-inserted">
+              <img class="img-responsive profileImg ProfileImage" src="assets/timeblockr-logo.png"
+                style="width:35%; margin-left: -110px; margin-top: -85px;">
+
+            </div>
+
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-primary" style='margin-left: 880px;'>submit</button>
+
+          </div>
+        </form>
+      </div>
+    </p-dialog>
+
+  </div>
+</div>
+
+
+<div *ngIf="datanotfound">
+  <div class="cotainer">
+    <h1>
+      <i style="color: red; font-weight: bold;margin-top: 20px;margin-left: 25px;"
+        class="fa fa-exclamation-triangle"></i><b>No Records Found</b>
+    </h1>
+  </div>
+</div>

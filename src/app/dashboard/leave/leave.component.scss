@@ -1,0 +1,40 @@
+.green{
+  background-color:#62cb31;
+ }
+ .yellow{
+   background-color: #ffb606;
+ }
+ .red{
+   background-color:#e74c3c;
+ }
+
+ .blue{
+   background-color:#3498db;
+ }
+ .card-title {
+   color: #fff;
+ }
+ .card-text{
+   color: #fff;
+ }
+
+ .font-weight-bold {
+  font-weight: 700!important;
+}
+.border-left-primary {
+  border-left: .25rem solid #d6c104!important;
+}
+
+ngb-datepicker {
+  border: 1px solid #dfdfdf;
+  border-radius: .25rem;
+  display: inline-block;
+  position: fixed !important;
+  width: auto !important;
+  height: auto !important;
+  top: 50% !important;
+  left: 50% !important;
+  margin-top: -50px !important;
+  margin-left: -50px !important;
+  z-index: 4 !important;
+}

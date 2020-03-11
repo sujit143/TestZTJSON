@@ -1,0 +1,371 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<div class="container-fluid">
+  <div class="">
+    <div class="">
+      <div class="navbar navbar-light bg-light">
+        <form class="form-inline" (ngSubmit)='onClickSearch(searchTerm.value)'>
+          <input class="form-control pl-5 mr-sm-2" type="search" placeholder="Search Members" aria-label="Search"
+            #searchTerm>
+        </form>
+        <button class="btn btn-md btn-info text-white" (click)="openAdd()">
+          Add Member
+        </button>
+      </div>
+      <p-table [value]="arrUser" [rows]=itemsPerPage [responsive]="true" [scrollable]='true' class="">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Display Name</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Email</th>
+            <th>Supervisor</th>
+            <th>Actions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td><span class="ui-column-title">First Name</span>{{ item.firstName }}</td>
+            <td><span class="ui-column-title">Last Name</span>{{ item.lastName }}</td>
+            <td><span class="ui-column-title">Display Name</span>{{ item.displayName }}</td>
+            <td><span class="ui-column-title">Gender</span>{{ item.gender }}</td>
+            <td><span class="ui-column-title">DOB</span>{{ item.dob }}</td>
+            <td><span class="ui-column-title">Address</span>{{ item.address }}</td>
+            <td><span class="ui-column-title">City</span>{{ item.city }}</td>
+            <td><span class="ui-column-title">State</span>{{ item.state }}</td>
+            <td><span class="ui-column-title">Email</span>{{ item.email }}</td>
+            <td><span class="ui-column-title">Supervisor</span>{{ item.supervisor }}</td>
+            <td>
+              <!-- <a class="btn btn-sm btn-primary" (click)="openEdit(item)"><i class="fas fa-edit"></i></a> -->
+              <i class="btn btn-sm btn-default fas fa-edit" (click)="openEdit(item)"></i>
+              <i class="btn btn-sm btn-danger fas fa-trash-alt" (click)="confirmDelete(item.memberId)"></i>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-paginator [rows]="itemsPerPage" [totalRecords]=totalRecords [pageLinkSize]=totalPages
+        (onPageChange)="paginate($event)"></p-paginator>
+    </div>
+
+    <p-dialog header="Add / Edit Member" [(visible)]="display" [modal]="true" [draggable]="false" [responsive]="true"
+      [style]="{width:'50%'}" [maximizable]="true">
+      <p-tabView>
+        <p-tabPanel header="Profile" leftIcon="pi pi-id-card">
+          <div class="container tab-content">
+            <div class="tab-pane show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <form [formGroup]="personalInfo" (ngSubmit)='onSavePersonal()'>
+                <div class="form-row">
+                  <div class="form-group col-md-6" style="border-right: 6px solid #474141;">
+                    <h4>Personal Info</h4>
+                    <hr />
+                    <div class="form-group">
+                      <label for="name">First Name<span style="color:red">*</span></label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control"  formControlName="firstName" placeholder="First Name"  />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="name">Middle Name</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" formControlName="middleName"
+                          placeholder="Middle Name" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="name">Last Name<span style="color: red;">*</span></label>
+                      <div class="col-sm-10">
+                        <input type="text" formControlName="lastName"
+                          class="form-control" placeholder="Last Name" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="name">Email<span style="color: red;">*</span></label>
+                      <div class="col-sm-10">
+                        <input type="text"formControlName="email"
+                          class="form-control" placeholder="Email" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Gender<span style="color: red;">*</span></label>
+                      <div class="col-sm-10">
+                        <label class="radio-inline" for="defaultInline1">
+                          <input type="radio" formControlName="gender" value="M"/>
+                          Male</label>
+                        <label class="radio-inline" for="defaultInline2">
+                          <input type="radio"  formControlName="gender" value="F"/>
+                          Female</label>
+                        <label class="radio-inline" for="defaultInline3">
+                          <input type="radio" formControlName="gender" value="O" />
+                          Other</label>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="name">Date Of Birth<span style="color: red;">*</span></label>
+                      <div class="col-sm-10">
+                        <input type="date" formControlName="dob"  class="form-control" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="name">Marital Status</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" placeholder="Marital Status" formControlName="maritalStatus" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="name">Race</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="race" placeholder="Race" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="name">Ethnicity</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="ethnicity" placeholder="Ethnicity" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="name">Religion</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="religion" placeholder="Religion" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <h4>Contact Info</h4>
+                    <hr/>
+                    <div class="form-group">
+                      <label for="name">Address</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" formControlName="address" placeholder="Address" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="name">Address2</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" formControlName="address2" placeholder="Address2" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">City</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" formControlName="city" placeholder="City" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">State</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" formControlName="state" placeholder="State" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Postal Code</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="zipCode" placeholder="Postal Code" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Cell</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="cell" placeholder="Cell" />
+                      </div>
+                    </div>
+                    <label for="name" class="control-label">Work Phone</label>
+                    <div class="form-group row">
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" formControlName="workPhone" placeholder="Work Phone" />
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="text" class="form-control" formControlName="workPhoneExt" placeholder="Ext" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Country</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="country" placeholder="Country" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">SSN/Govt.ID</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="ssn" placeholder="SSN / Govt.ID" />
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Language</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" formControlName="language" placeholder="Language" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-success pull-right" style='margin-left: 318px;'>Save Personal
+                      Info</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Work Info" leftIcon="pi pi-info" [disabled]='personalInfo.invalid'>
+          <div class="container tab-content">
+            <form [formGroup]="workInfo" (ngSubmit)='onSaveWork()'>
+              <div class="tab-pane show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <h4>Work Info</h4>
+                <hr/>
+                <div class="form-group">
+                  <label for="name">Organization</label>
+                  <div class="col-sm-10">
+                    <select class="custom-select" data-val="true"
+                      data-val-number="The field OrganizationId must be a number."  id="ddlMemOrg"
+                      formControlName="orgId">
+                      <option [value]="">Select</option>
+                      <!-- <option  *ngFor="let item of organization" [value]="item.orgId">{{item.name}}</option> -->
+                      <option ngf [value]="">Skycliff IT Pvt. Ltd.</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="name">Location</label>
+                  <div class="col-sm-10">
+                    <select class="custom-select" data-val="true" data-val-number="The field LocationId must be a number."
+                      id="ddlMemLocation" formControlName="locationName">
+                      <option value="">Select</option>
+                      <!-- <option  *ngFor="let item of location" [value]="item.id">{{item.name}}</option> -->
+                      <option value="1">Bangalore</option>
+                      <option value="2">Hubli-Dharwad</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="name">Department</label>
+                  <div class="col-sm-10">
+                    <select class="custom-select" data-val="true"
+                      data-val-number="The field DepartmentId must be a number." id="ddlMemDepartment"
+                      formControlName="departmentName">
+                      <option value="">Select</option>
+                      <!-- <option  *ngFor="let item of department" [value]="item.Id">{{item.name}}</option> -->
+                      <option value="1">Yourdrs - Web Development</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="name">Designation</label>
+                  <div class="col-sm-10">
+                    <select class="custom-select" data-val="true"
+                      data-val-number="The field DepartmentId must be a number." id="ddlMemDepartment"
+                      formControlName="designation">
+                      <option value="">Select</option>
+                      <!-- <option  *ngFor="let item of designation" [value]="item.id">{{item.name}}</option> -->
+                      <option value="1">Software Engineer</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="name">Roles</label>
+                  <div class="col-sm-9">
+                    <select class="custom-select" data-val="true"
+                      data-val-number="The field DepartmentId must be a number." id="ddlMemDepartment"
+                      formControlName="roles">
+                      <option value="">Select</option>
+                      <option value="1">Admin</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="name">Date Of Joining</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" id="inputtext3" placeholder="" formControlName="doj"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="name">Supervisor/Manager</label>
+                  <div class="col-sm-9">
+                    <select class="custom-select" data-val="true"
+                      data-val-number="The field DepartmentId must be a number." id="ddlMemDepartment"
+                      formControlName="supervisor">
+                      <option value="">Select</option>
+                      <option value="1">Admin Manju</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-success pull-right" [disabled]='workInfo.invalid'>Save Work
+                    Info</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Documents" leftIcon="pi pi-upload">
+          <div class="container tab-content">
+            <form [formGroup]="document" (ngSubmit)='saveUpload()'>
+              <div class="tab-pane show active" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <div class="form-group">
+                  <label for="name">Document Type</label>
+                  <div class="col-sm-10">
+                    <select class="custom-select" data-val="true"
+                      data-val-number="The field DepartmentId must be a number." id="ddlMemDepartment"
+                      formControlName="documentType">
+                      <option value="">Select</option>
+                      <option value="1">Personal</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="files border border-success text-center">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 70px; color: #36cb94; margin-top: 15px;"></i>
+                    <h2 style="font-size: 18px; margin: 0px;">Drop files here or click to upload.</h2>
+                    <input type="file" class="form-control" multiple="" type="file" (change)="onChange($event.target.files)">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-success pull-right" [disabled]='workInfo.invalid'>Save Upload Documents</button>
+                </div>
+              </div>
+              <div class="container">
+                {{uploadFile}}
+              </div>
+            </form>
+            <div>
+                <p-table [value]="fileList" [rows]=itemsPerPage [responsive]="true"
+                class="table table-striped table-sm table-responsive-sm table-hover">
+                <ng-template pTemplate="header">
+                  <tr class="">
+                    <th>File Content</th>
+                    <th>Actions</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item let-i = index>
+                  <tr>
+                    <td>{{item.name}}</td>
+                    <td class='col'>
+                      <a class="btn btn-sm btn-primary" (click)="viewFile(item)"><i class="fa fa-eye"></i></a>|
+                      <a class="btn btn-sm btn-danger" (click)="removeFile(item.id)"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </p-dialog>
+  </div>
+</div>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>

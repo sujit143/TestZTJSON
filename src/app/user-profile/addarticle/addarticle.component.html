@@ -1,0 +1,40 @@
+<div>
+  <!-- <div class="panel-header panel-header-sm"></div> -->
+  <div class="main-container">
+      <p-toast [style]="{marginTop: '80px'}" ></p-toast>
+    <div class="main-container">
+      <form [formGroup]="addForm" (ngSubmit)="onAddArticle()">
+        <div class="container form-box"><br/>
+          <table class="table table-bordered ">
+            <tbody>
+              <tr>
+                <td>Category</td>
+                <td>
+                  <select  formControlName="category_id" class="custom-select" >
+                    <option  *ngFor="let item of category_disp" [value]="item.categoryId">{{item.categoryName}}</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td style="width:150px;">Name<span  class="text-danger">  *</span></td>
+                <td><input type="text" class='form-control' formControlName="article_name"></td>
+              </tr>
+              <tr>
+                <td>Description</td>
+              </tr>
+            </tbody>
+          </table>
+          <p-editor formControlName="content" [style]="{'height':'320px'}"></p-editor><br>
+        </div>
+        <div class="container form-box">
+          <div class="row custom-wrapper">
+            <div class="col-md-12 btn-box">
+              <button type="submit" class="btn btn-primary btn-sm text-white btn-save" style="margin-left:6px; background-color: #34495e; border-color: #34495e; color: #fff;">Save</button>&nbsp;&nbsp;
+              <button type="button" class="btn btn-warning btn-sm text-white btn-cancel" (click)='onClickClose()'>Close</button> <br/>
+            </div>
+          </div>
+        </div><br/>
+      </form>
+    </div>
+  </div>
+</div>

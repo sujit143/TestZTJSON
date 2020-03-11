@@ -1,0 +1,32 @@
+.flex-spacer {
+  flex: 1 1 auto;
+}
+.li{
+  white-space: nowrap !important;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color:black !important;
+}
+
+
+/* .content {
+  padding: 16px;
+} */
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #ff3636 !important;
+}
+
+/* .sticky + .content {
+  padding-top: 60px;
+} */
+
+.navbar a.dropdown-item {
+  color: black;
+}

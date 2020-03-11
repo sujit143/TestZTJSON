@@ -1,0 +1,414 @@
+
+ <!-- <p-toast [style]="{marginTop: '80px'}"></p-toast>
+<div class="main-container container-fluid">
+   <div class="data-container zoomIn">
+    <nav class="navbar navbar-light bg-light">
+      <div class="col-md-3">
+        <input class="form-control"  type="text" #f (keyup)="onSearch(f.value)" placeholder="Start Searching for a Designation by Name">
+      </div>
+      <button  class="ui-button-info" type="button" (click)="onAdd()" pButton  label="Add Location">
+      </button>
+    </nav>
+
+
+      <p-dialog header="AddNew" [(visible)]="display" width="400"  [transitionOptions]="'0ms'" modal="false" position="center" [resizable]="false" [draggable]="false" showEffect="clip"  (onHide)="close()" width="auto">
+        <form [formGroup]='addForm' (ngSubmit)="onFormSubmit(addForm)">
+          <table>
+             <tr>
+
+                <td>
+                   <div class="form-group">
+                      <label for="name" class="col-sm-2 control-label">Name</label>
+                         <input   id="location" class="form-control mandatory" placeholder="Name" formControlName='name' />
+                   </div>
+                </td>
+                &nbsp; &nbsp;
+
+
+                <td>
+                   <div class="form-group">
+                      <label for="description" class="col-sm-2 control-label">Description</label>
+                         <input id="description" class="form-control" formControlName='description' placeholder="Description" name="Description"/>
+                   </div>
+                </td>
+                &nbsp; &nbsp;
+             </tr>
+             <tr>
+                <td>
+                   <div class="form-group">
+                      <label>Registered Address1</label>
+
+                         <input  class="form-control mandatory"  formControlName='address1' placeholder="Address1" name="address1"  />
+
+                   </div>
+                </td>
+                &nbsp; &nbsp;
+                <td>
+                   <div class="form-group">
+                      <label >Registered Address2</label>
+
+                         <input  class="form-control" formControlName='address2' placeholder="Address2" name="address2" />
+
+                   </div>
+                </td>
+                &nbsp; &nbsp;
+                <td>
+                   <div class="form-group">
+                      <label >City</label>
+
+                         <input  class="form-control mandatory" formControlName='city' placeholder="City" name="city" />
+
+                   </div>
+                </td>
+                &nbsp; &nbsp;
+             </tr>
+             <tr>
+                <td>
+                   <div class="form-group">
+                      <label >State</label>
+
+                         <input  class="form-control" formControlName='state' placeholder="State" name="state"  />
+
+                   </div>
+                </td>
+                &nbsp; &nbsp;
+                <td>
+                   <div class="form-group">
+                      <label >Zip Code</label>
+
+                         <input  class="form-control mandatory" formControlName='zip' placeholder="Zip Code" name="zip" />
+
+                   </div>
+                </td>
+                &nbsp; &nbsp;
+                <td>
+                   <div class="form-group">
+                      <label >Country</label>
+
+                         <input  class="form-control mandatory" formControlName='country' placeholder="Country" name="country" />
+
+                   </div>
+                </td>
+                &nbsp; &nbsp;
+             </tr>
+             <tr>
+                <td>
+                   <div class="form-group">
+                      <label >Website</label>
+
+                         <input  class="form-control" formControlName='website' placeholder="Website" name="website"  />
+
+                      </div>
+
+                </td>
+                &nbsp; &nbsp;
+                <td>
+                   <div class="form-group">
+                      <label >Phone1</label>
+                        <input class="form-control" formControlName='phone1'  placeholder="Phone1" name="phone1" />
+                   </div>
+                </td>
+                &nbsp; &nbsp;
+                <td>
+                   <div class="form-group">
+                      <label >Phone2</label>
+
+                         <input class="form-control" formControlName='phone2' placeholder="Phone2" name="phone2" />
+
+                   </div>
+                </td>
+                &nbsp; &nbsp;
+             </tr>
+             <tr>
+                <td>
+                   <div class="form-group">
+                      <label >Fax</label>
+
+                         <input class="form-control mandatory" formControlName='fax' placeholder="Fax" name="fax" />
+
+                   </div>
+                </td>
+                &nbsp; &nbsp;
+             </tr>
+          </table>
+
+
+             <button  type="submit" class="btn btn-outline-dark" style='margin-left: 318px;'>
+             {{ selectedLocationOption }} Locations
+             </button>
+
+          </form>
+    </p-dialog>
+
+      <p-table [value]="arrLoc" [paginator]="true" [rows]="15" [responsive]="true"  >
+        <ng-template pTemplate="header">
+          <tr class="table-title">
+            <th>Name</th>
+            <th>Description</th>
+            <th>Address1</th>
+            <th>Address2</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Country</th>
+            <th>Phone1</th>
+            <th>Phone2</th>
+            <th>Fax</th>
+            <th>Website</th>
+            <th id="text-align-right">Actions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+              <td><span class="ui-column-title">Name</span>{{ item.name }}</td>
+              <td><span class="ui-column-title">description</span>{{ item.description }}</td>
+              <td><span class="ui-column-title">address1</span>{{ item.address1 }}</td>
+              <td><span class="ui-column-title">address2</span>{{ item.address2 }}</td>
+              <td><span class="ui-column-title">city</span>{{ item.city }}</td>
+              <td><span class="ui-column-title">state</span>{{ item.state }}</td>
+              <td><span class="ui-column-title">zip</span>{{ item.zip }}</td>
+              <td><span class="ui-column-title">country</span>{{ item.country }}</td>
+              <td><span class="ui-column-title">phone1</span>{{ item.phone1 }}</td>
+              <td><span class="ui-column-title">phone2</span>{{ item.phone2 }}</td>
+              <td><span class="ui-column-title">fax</span>{{ item.fax }}</td>
+              <td><span class="ui-column-title">website</span>{{ item.website }}</td>
+              <td class='col'>
+                    <i class="fas fa-edit" style="cursor:pointer" (click)="display = !display" (click)="openEdit(item)"></i>
+                    <span>|</span>
+                  <i class="fas fa-trash-alt" style="cursor:pointer" (click)="confirmDelete(item.id)"></i>
+              </td>
+            </tr>
+        </ng-template>
+    </p-table>
+   </div>
+</div>
+<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog> -->
+
+
+  <!-- <div class="container-fluid"> -->
+      <div class="container-fluid">
+          <div class="ui-g">
+              <div class="ui-g-4"><i style="margin:3px 3px 0 0"></i>
+                <input
+                  class="form-control"
+                  type="text"
+                  pInputText
+                  placeholder="Search by name "
+                  (input)="search.filterGlobal($event.target.value, 'contains')"
+                /></div>
+                <div class="ui-g-4" style="padding-top: 25px;float:right !important"></div>
+              <div class="ui-g-4" style="padding-top: 25px;float:right !important">
+                <span style="float: right;overflow: hidden;text-overflow: ellipsis;">
+                <button
+                  type="button"
+                  (click)="onAdd('add')"
+                  pButton
+                  label="Add Location"
+                ></button
+              >
+            </span>
+            </div>
+          </div>
+  <p-toast [style]="{marginTop: '80px'}"></p-toast>
+  <!-- <div>
+      <nav class="navbar navbar-light bg-light">
+          <div class="col-md-3" style="float: left;">
+            <input
+              type="text"
+              pInputText
+              size="10"
+              placeholder="Search here...."
+              (input)="search.filterGlobal($event.target.value, 'contains')"
+              style="width:60%;"/>
+          </div>
+         <div style="float: right;"> <button  class="ui-button-info " type="button" (click)="onAdd()" pButton  label="Add Location"></button></div>
+        </nav>
+      </div> -->
+
+
+  <p-table #search [value]="arrayLocation" [paginator]="true" [rows]="10" [globalFilterFields]="['name']" [responsive]="true" [scrollable]="true" scrollHeight="680px">
+    <!-- <ng-template pTemplate="caption">
+      <div style="text-align: left; padding-top: 20px;">
+         <i style="margin:3px 3px 0 0"></i>
+          <input
+              type="text"
+              pInputText
+              size="10"
+              placeholder="Search by name"
+              (input)="search.filterGlobal($event.target.value, 'contains')"
+              style="width:20%;"/>
+              <span style="float: right"><button  type="button" (click)="onAdd()" pButton  label="Add Location"></button></span>
+            </div>
+       </ng-template> -->
+      <ng-template pTemplate="header">
+        <tr class="my-center-text">
+            <th>Name</th>
+            <th>Description</th>
+            <th>Address1</th>
+            <th>Address2</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Country</th>
+            <th>Phone1</th>
+            <th>Phone2</th>
+            <th>Fax</th>
+            <th>Website</th>
+            <th>Action</th>
+        </tr>
+      </ng-template>
+    <ng-template pTemplate="body" let-item>
+        <tr>
+         <td><span class="ui-column-title">Name</span>{{ item.name }}</td>
+          <td><span class="ui-column-title">description</span>{{ item.description }}</td>
+          <td><span class="ui-column-title">address1</span>{{ item.address1 }}</td>
+          <td><span class="ui-column-title">address2</span>{{ item.address2 }}</td>
+          <td><span class="ui-column-title">city</span>{{ item.city }}</td>
+          <td><span class="ui-column-title">state</span>{{ item.state }}</td>
+          <td><span class="ui-column-title">zip</span>{{ item.zip }}</td>
+          <td><span class="ui-column-title">country</span>{{ item.country }}</td>
+          <td><span class="ui-column-title">phone1</span>{{ item.phone1 }}</td>
+          <td><span class="ui-column-title">phone2</span>{{ item.phone2 }}</td>
+          <td><span class="ui-column-title">fax</span>{{ item.fax }}</td>
+          <td><span class="ui-column-title">website</span>{{ item.website }}</td>
+          <td class="iconaligncenter"><span class="ui-column-title">Action</span>
+             <i class="pi pi-user-edit" style="cursor: pointer;" (click)="openEdit(item)"></i> |
+             <i class="pi pi-trash" style="cursor: pointer;" (click)="confirmDelete(item.id)"></i>
+        </td>
+        </tr>
+     </ng-template>
+  </p-table>
+  <p-dialog header="AddNew" [(visible)]="display" width="800"   modal="false" position="center" (onHide)="close()">
+    <form [formGroup]='addForm' (ngSubmit)="onFormSubmit(addForm)">
+      <table>
+         <tr>
+
+            <td>
+               <div class="form-group">
+                  <label>Name</label>
+                     <input   id="location" class="form-control mandatory" placeholder="Name" formControlName='name'/>
+               </div>
+            </td>
+            &nbsp; &nbsp;
+
+
+            <td>
+               <div class="form-group">
+                  <label>Description</label>
+                     <input id="description" class="form-control" formControlName='description' placeholder="Description" />
+               </div>
+            </td>
+            &nbsp; &nbsp;
+         </tr>
+         <tr>
+            <td>
+               <div class="form-group">
+                  <label>Registered Address1</label>
+
+                     <input  class="form-control mandatory"  formControlName='address1' placeholder="Address1" name="address1"  />
+
+               </div>
+            </td>
+            &nbsp; &nbsp;
+            <td>
+               <div class="form-group">
+                  <label >Registered Address2</label>
+
+                     <input  class="form-control" formControlName='address2' placeholder="Address2" name="address2" />
+
+               </div>
+            </td>
+            &nbsp; &nbsp;
+            <td>
+               <div class="form-group">
+                  <label >City</label>
+
+                     <input  class="form-control mandatory" formControlName='city' placeholder="City" name="city" />
+
+               </div>
+            </td>
+            &nbsp; &nbsp;
+         </tr>
+         <tr>
+            <td>
+               <div class="form-group">
+                  <label >State</label>
+
+                     <input  class="form-control" formControlName='state' placeholder="State" name="state"  />
+
+               </div>
+            </td>
+            &nbsp; &nbsp;
+            <td>
+               <div class="form-group">
+                  <label >Zip Code</label>
+
+                     <input  class="form-control mandatory" formControlName='zip' placeholder="Zip Code" name="zip" />
+
+               </div>
+            </td>
+            &nbsp; &nbsp;
+            <td>
+               <div class="form-group">
+                  <label >Country</label>
+
+                     <input  class="form-control mandatory" formControlName='country' placeholder="Country" name="country" />
+
+               </div>
+            </td>
+            &nbsp; &nbsp;
+         </tr>
+         <tr>
+            <td>
+               <div class="form-group">
+                  <label >Website</label>
+
+                     <input  class="form-control" formControlName='website' placeholder="Website" name="website"  />
+
+                  </div>
+
+            </td>
+            &nbsp; &nbsp;
+            <td>
+               <div class="form-group">
+                  <label >Phone1</label>
+                    <input class="form-control" formControlName='phone1'  placeholder="Phone1" name="phone1" />
+               </div>
+            </td>
+            &nbsp; &nbsp;
+            <td>
+               <div class="form-group">
+                  <label >Phone2</label>
+
+                     <input class="form-control" formControlName='phone2' placeholder="Phone2" name="phone2" />
+
+               </div>
+            </td>
+            &nbsp; &nbsp;
+         </tr>
+         <tr>
+            <td>
+               <div class="form-group">
+                  <label >Fax</label>
+
+                     <input class="form-control mandatory" formControlName='fax' placeholder="Fax" name="fax" />
+
+               </div>
+            </td>
+            &nbsp; &nbsp;
+         </tr>
+      </table>
+      <p-footer>
+          <button  type="submit" class="btn btn-outline-dark" >
+              {{ selectedLocationOption }} Locations
+              </button>
+          <button type="button" pButton icon="pi pi-close" (click)="display=false" label="No" class="ui-button-secondary"></button>
+      </p-footer>
+      </form>
+
+      <!-- <button  type="submit" class="btn btn-outline-dark" >
+          {{ selectedLocationOption }} Locations
+          </button> -->
+</p-dialog>
+<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>
+</div>

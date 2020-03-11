@@ -1,0 +1,40 @@
+ul.navbar-nav {
+  margin-left: 878px;
+}
+
+mat-panel-title.mat-expansion-panel-header-title {
+  color: grey;
+}
+
+.formlabel {
+color: gray;
+}
+
+.data{
+  color: #02395A;
+}
+
+input.form-control {
+  margin-top: 11px;
+  margin-left: 93px;
+}
+
+.form-control {
+  background-color: transparent;
+  border: 0px solid #E3E3E3;
+  border-radius: 30px;
+  color: whitesmoke;
+  line-height: normal;
+  font-size: 0.8571em;
+  transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  box-shadow: none;
+}
+
+.scrollit {
+  overflow:scroll;
+  height:514px;
+}
+
+.panel-body {
+  display: block;
+}

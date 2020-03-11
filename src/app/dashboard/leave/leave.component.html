@@ -1,0 +1,181 @@
+<!-- <div class="panel-header panel-header-sm">
+  </div> -->
+<!-- Top Navigation Bar-->
+
+<!--Top navigation bar ends-->
+<br>
+<div class="container w-100">
+  <div class="row">
+    <div class="col ">
+    <div class="card text-center ">
+      <div class="card-body green">
+        <h4 class="card-title">Approved Leaves</h4>
+       <h1><p class="card-text">{{a}}</p></h1>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pending Request</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{b}}</div>
+            </div>
+            <div class="col-auto">
+              <i class="fa fa-plus-square fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+  <div class="col-md-3">
+    <div class="card text-center">
+      <div class="card-body red">
+        <h4 class="card-title">Declined Request</h4>
+      <h1>  <p class="card-text">{{c}}</p></h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-center">
+      <div class="card-body blue">
+        <h4 class="card-title">Balance Leave</h4>
+       <h1> <p class="card-text">{{e}}</p></h1>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+<br>
+
+<p-accordion>
+<p-accordionTab header="Leave Request" [responsive]="true">
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-7">
+
+              <!-- <div class="panel-body" style="display: block;">
+                 <div class="row">
+                  <div class="col-md-5" style=""> -->
+                      <p-table [value]="countries" [responsive]="true">
+                          <ng-template pTemplate="header">
+                              <tr>
+                                  <th style="text-align: left;">Leave / Vacation Type</th>
+                                  <th style="text-align: left;">Requested Date</th>
+                                  <th style="text-align: left;">Applied for</th>
+                                  <th style="text-align: left;">Status</th>
+                                  <th style="text-align:left;">Sent to</th>
+                                </tr>
+                          </ng-template>
+                          <ng-template pTemplate="body" let-car >
+                              <tr >
+                                  <td style="text-align: left;">{{car.Leave}}</td>
+                                  <td style="text-align: left;">{{car.Requested}}</td>
+                                  <td style="text-align: left;">{{car.Applied}}</td>
+                                  <td style="text-align: left;">{{car.Status}}</td>
+                                  <td style="text-align: left;">{{car.Sent}}</td>
+                              </tr>
+                          </ng-template>
+                 </p-table>
+                </div>
+
+
+                <div class="col-md-5" style="border-left: 1px solid gray;">
+                    <!-- <div class="col"> -->
+                    <table class="table table-responsive table-striped">
+                        <tbody><tr>
+                            <td colspan="2">
+                                <h4 class="font-extra-bold">Create New Request</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="formlabel" style="font-size: 11pt;color: black;">Start Date</span>
+                                <br>
+
+                                <form class="form-inline">
+                                  <div class="form-group">
+                                    <div class="input-group">
+                                      <input class="form-control" placeholder="yyyy-mm-dd"
+                                             name="dp" [(ngModel)]="model1" ngbDatepicker #d1="ngbDatepicker">
+                                      <div class="input-group-append">
+                                        <button class="" (click)="d1.toggle()" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </form>
+
+                            </td>
+                            <td>
+
+                                <span class="formlabel" style="font-size: 11pt;color: black;">End Date</span>
+
+                                <form class="form-inline">
+                                  <div class="form-group">
+                                    <div class="input-group">
+                                      <input class="form-control" placeholder="yyyy-mm-dd"
+                                             name="dp" [(ngModel)]="model2"  [placement]="placement" ngbDatepicker #d2="ngbDatepicker">
+                                      <div class="input-group-append">
+                                        <button class="" (click)="d2.toggle()" type="button" ><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="icheckbox_square-green" style="position: relative;">
+                                    <input type="checkbox" class="i-checks" checked="" style="position: absolute; opacity: 0;">
+                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
+                                    </ins>
+                                </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                <input type="checkbox" id="mycheck">&nbsp;&nbsp;Check this box, if you want to apply half a day.
+                              </td>
+
+                          </tr><br>
+                        <tr>
+
+                            <td>
+                                <span class="formlabel" style="font-size: 11pt;color: black;">Notify these users for me!</span>
+                                <br>  <input type="text" value="" id="" class="form-control" name="Team members" placeholder="username">
+                            </td>
+                            <td>
+                                <span class="formlabel" style="font-size: 11pt;color: black;">Leave Type</span>
+                                <br>
+
+                                <select class="form-control m-b" name="account">
+                                    <option>option 1</option>
+                                    <option>option 2</option>
+                                    <option>option 3</option>
+                                    <option>option 4</option>
+                                </select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center;padding-top:40px;">
+                                <button class="btn btn-default" type="submit">Cancel</button>
+                                <button class="btn btn-primary" type="submit">Request Leave / Vacation time!</button>
+                            </td>
+                        </tr>
+                    </tbody></table>
+
+        </div>
+        </div>
+        </div>
+          </p-accordionTab>
+        </p-accordion>
+
+
+
+
+
+

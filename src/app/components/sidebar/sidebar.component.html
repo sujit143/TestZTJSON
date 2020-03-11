@@ -1,0 +1,41 @@
+<div class="logo">
+  <a href="#" class="simple-text logo-mini">
+    <div class="logo-img">
+      <img src="./assets/img/angular2-logo-white.png" />
+    </div>
+  </a>
+  <a class="simple-text logo-normal">
+    ZoomTeams
+  </a>
+
+
+
+  <a>
+    <div class="div1">
+      <img src="http://qa.zoomteams.com/images/173423b5-f94f-4a66-9572-408ba1177efe.jpeg" class="rounded-circle"
+        alt="Cinque Terre" width="204" height="206">
+      <h5 style="text-align: center;"><b>Admin Manju</b></h5>
+      <h6 style="text-align: center;">Quality Analyst</h6>
+    </div>
+  </a>
+
+</div>
+
+<div class="sidebar-wrapper">
+  <ul class="nav" style="padding-bottom: 100%;">
+    <li *ngFor="let menuItem of menuItems; let i=index" class="{{menuItem.class}} nav-item"
+      [ngClass]="{'active': selectedIndex == i}" (click)="select(i)">
+      <a [routerLink]="[menuItem.path]" *ngIf="menuItem.title != 'Knowledge Base'">
+        <i class="now-ui-icons {{menuItem.icon}}"></i>
+        <p>{{menuItem.title}}</p>
+      </a>
+
+      <a (click)="navigateToUserprofile(i)" *ngIf="menuItem.title === 'Knowledge Base'"
+        [ngClass]="{'active': selectedIndex == i}">
+        <i class="now-ui-icons {{menuItem.icon}}"></i>
+        <p>{{menuItem.title}}</p>
+      </a>
+    </li>
+
+  </ul>
+</div>

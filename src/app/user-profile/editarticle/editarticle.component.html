@@ -1,0 +1,40 @@
+<!-- <div class="panel-header panel-header-sm"></div> -->
+<div class="main-container">
+  <div class="container-fluid second-card">
+      <p-toast [style]="{marginTop: '80px'}" ></p-toast>
+      <form [formGroup]="editForm" (ngSubmit)="onEditArticle()">
+      <div class="container"><br />
+        <table class="table table-bordered " style="margin-left: 0px !important;">
+          <tbody>
+            <tr>
+              <td style="width:150px;"> Article Name<span class="text-danger"> *</span></td>
+              <td><input type="text" class='form-control' formControlName="ArticleName"></td>
+            </tr>
+            <tr>
+              <td>category</td>
+              <td>
+                <select formControlName="CategoryId" class="custom-select">
+                  <option value="">Choose your category</option>
+                  <option *ngFor="let item of arr" [value]="item.categoryId">{{item.categoryName}}</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Description</td>
+            </tr>
+          </tbody>
+        </table>
+        <p-editor formControlName="Content"  [style]="{'height':'320px'}"></p-editor><br>
+      </div>
+      <div class="container form-box">
+        <div class="row custom-wrapper">
+          <div class="col-md-12 btn-box">
+            <button type="submit" class="btn btn-primary btn-sm text-white btn-save" style="margin-left:6px; background-color: #34495e; border-color: #34495e; color: #fff;">Save</button>&nbsp;&nbsp;
+            <button type="button" class="btn btn-warning btn-sm text-white btn-cancel" (click)='onClickClose()'>Close</button> <br/>
+          </div>
+        </div>
+      </div><br/>
+    </form>
+  </div>
+</div>
+

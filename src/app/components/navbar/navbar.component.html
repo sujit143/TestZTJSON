@@ -1,0 +1,282 @@
+<nav
+  class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary sticky fixed-top"
+>
+  <div class="container-fluid">
+    <div class="navbar-wrapper">
+      <div class="navbar-toggle">
+        <button type="button" class="navbar-toggler" (click)="sidebarToggle()">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <a class="navbar-brand">{{ title }}</a>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="collapse()"
+      [attr.aria-expanded]="!isCollapsed"
+      aria-controls="collapseExample"
+    >
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse justify-content-end"
+      id="collapseExample"
+      [ngbCollapse]="isCollapsed"
+    >
+      <!-- <form>
+        <div class="input-group no-border">
+          <input
+            type="text"
+            value=""
+            class="form-control"
+            placeholder="Search..."
+          />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="now-ui-icons ui-1_zoom-bold"></i>
+            </div>
+          </div>
+        </div>
+      </form> -->
+      <!-- <ul class="navbar-nav" *ngIf = "!dashboardMenu">
+
+        <li class="nav-item">
+          <a class="nav-link" href="#pablo">
+            <i class="now-ui-icons media-2_sound-wave"></i>
+            <p>
+              <span class="d-lg-none d-md-block">Stats</span>
+            </p>
+          </a>
+        </li>
+        <li class="nav-item" ngbDropdown>
+          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
+            <i class="now-ui-icons location_world"></i>
+            <p>
+              <span class="d-lg-none d-md-block">Some Actions</span>
+            </p>
+          </a>
+          <div
+            class="dropdown-menu dropdown-menu-right"
+            ngbDropdownMenu
+            aria-labelledby="dropdownBasic1"
+          >
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#pablo">
+            <i class="now-ui-icons users_single-02"></i>
+            <p>
+              <span class="d-lg-none d-md-block">Account</span>
+            </p>
+          </a>
+        </li>
+      </ul> -->
+
+<!--
+      <ul class="navbar-nav" *ngIf = "dashboardMenu">
+          <li class="nav-item">
+            <a class="nav-link" href="#pablo">
+              <i class="fa fa-list" aria-hidden="true"></i>
+              <p>
+                <span class="d-lg-none d-md-block"
+                  >Leave/Vacation Management</span
+                >
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#pablo">
+              <i class="fa fa-book" aria-hidden="true"></i>
+              <p>
+                <span class="d-lg-none d-md-block">Holiday List</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#pablo">
+              <i class="fa fa-table" aria-hidden="true"></i>
+              <p>
+                <span class="d-lg-none d-md-block">Organization Chart</span>
+              </p>
+            </a>
+          </li>
+          </ul> -->
+
+          <ul class="nav justify-content-end"  *ngIf = "dashboardMenu">
+
+            <li class="nav-item">
+              <!-- <a class="nav-link active" href="#">
+                <i class="fa fa-users" aria-hidden="true"></i>My Dashboard<s/a> -->
+              <!-- <a class="nav-link active" href="#"> -->
+                 <!-- <i class="fa fa-users" aria-hidden="true"></i>My Dashboard</a>  -->
+
+                <a class="nav-link dropdata"  [routerLink]="['/dashboard']"> <i class="fa fa-users" aria-hidden="true"></i>My Dashboard</a>
+            </li>
+
+            <div class="vertical"></div>
+
+            <li class="nav-item">
+              <!-- <a class="nav-link dropdata" href="#">
+                <i class="fa fa-list" aria-hidden="true"></i>Leave/Vacation Management</a> -->
+              <!-- <a class="nav-link dropdata" href="#">
+                <i class="fa fa-list" aria-hidden="true"></i>Leave/Vacation Management</a> -->
+                <a class="nav-link dropdata" [routerLink]="['leave']"> <i class="fa fa-list" aria-hidden="true"></i> Leave/Vacation Management</a>
+            </li>
+
+            <div class="vertical"></div>
+
+            <li class="nav-item">
+              <!-- <a class="nav-link dropdata" [routerLink]="['/dashboard/holilist']" href="#">
+                <i class="fa fa-book" aria-hidden="true"></i>Holidy List</a
+              > -->
+              <a class="nav-link dropdata" [routerLink]="['holidaylist']"><i class="fa fa-book" aria-hidden="true"></i> Holidy List</a>
+            </li>
+            <div class="vertical"></div>
+            <li class="nav-item">
+              <a class="nav-link dropdata" href="#"><i class="fa fa-table" aria-hidden="true"></i> Organization Chart</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link dropdata" [routerLink]="['/']"><i class="fa fa-sign-out-alt"></i> <p>Logout</p></a>
+            </li>
+          </ul>
+
+
+
+
+
+          <ul class="navbar-nav" *ngIf = "settingMenu">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"
+              [routerLinkActiveOptions]={exact:true}>
+                <i class="fa fa-list" aria-hidden="true"></i>
+                <p>
+
+                </p>MyDashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="Change()" >
+                <i class="fa fa-book" aria-hidden="true"></i>
+                <p>
+                  <!-- <span class="d-lg-none d-md-block"></span> -->
+                </p> My Article
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pablo" [routerLink]="['/add']" routerLinkActive="router-link-active"
+              [routerLinkActiveOptions]={exact:true}>
+                <i class="fa fa-table" aria-hidden="true"></i>
+                <p>
+                  <!-- <span class="d-lg-none d-md-block"></span> -->
+                </p>
+                Add Article
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link dropdata" [routerLink]="['/']"><i class="fa fa-sign-out-alt"></i>
+                <p>Logout</p></a>
+            </li>
+            </ul>
+
+
+            <!-- <ul class="navbar-nav" *ngIf = "EdirtMenu">
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]={exact:true}>
+                  <i class="fa fa-list" aria-hidden="true"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block"
+                      >MyDashboard</span
+                    >
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="Change()" >
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">My Article</span>
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo" [routerLink]="['/add']" routerLinkActive="router-link-active"
+                [routerLinkActiveOptions]={exact:true}>
+                  <i class="fa fa-table" aria-hidden="true"></i>
+                  <p>
+                    <span class="d-lg-none d-md-block">Add Article</span>
+                  </p>
+                </a>
+              </li>
+              </ul> -->
+
+
+
+
+              <ul class="navbar-nav" *ngIf = "typography">
+                  <li class="nav-item">
+                    <!-- <a class="nav-link" href="#pablo"> -->
+                      <!-- <i class="fa fa-list" aria-hidden="true"> -->
+                          <!-- <div ngbDropdown>
+                              <button type="button" class="btn btn-default dropdown-toggle" ngbDropdownToggle>
+                                <i class="far fa-file-word"></i>Manage Organization & Users
+                              </button>
+                              <div ngbDropdownMenu class="dropdown-menu-right">
+                                <a class='dropdown-item' [routerLink]="['/typography/designation']">Designations</a>
+                                <a class='dropdown-item' [routerLink]="['/typography/department']">Department</a>
+                                <a class='dropdown-item' [routerLink]="['/typography/location']">Locations</a>
+                                <a class='dropdown-item' [routerLink]="['/typography/organization']">Organizations</a>
+                                <a class='dropdown-item' [routerLink]="['/typography/user']">Users</a>
+                                <a class='dropdown-item' [routerLink]="['/typography/document']">Document Type</a>
+                              </div>
+
+                            </div> -->
+                            <div ngbDropdown >
+                              <a class="dropdown-toggle nav-link" style="cursor: pointer;"  role="button" ngbDropdownToggle>
+                                <i class="fa fa-users"></i> Manage Organization & Users
+                              </a>
+
+                              <div class="dropdown-menu" ngbDropdownMenu>
+                                <a class='dropdown-item' [routerLink]="['/typography/designation']">Designations</a>
+                                <a class='dropdown-item' [routerLink]="['/typography/department']">Department</a>
+                                <a class='dropdown-item' [routerLink]="['/typography/location']">Locations</a>
+                                <a class='dropdown-item' [routerLink]="['/typography/organization']">Organizations</a>
+                                <a class='dropdown-item' [routerLink]="['/typography/user']">Users</a>
+                                <a class='dropdown-item' [routerLink]="['/typography/document']">Document Type</a>
+                              </div>
+                            </div>
+
+                      <!-- </i> -->
+                      <!-- <p>
+                        <span class="d-lg-none d-md-block"
+                          >MyDashboard</span
+                        >
+                      </p> -->
+                    <!-- </a> -->
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link dropdata" href="#"><i class="fa fa-plus"></i>Create Project</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link dropdata" [routerLink]="['/typography/timesheet']" href="#"><i class="fa fa-calendar" aria-hidden="true"></i>Time Sheets</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link dropdata" href="#"><i class="fa fa-edit" aria-hidden="true"></i>Edit Projects</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link dropdata"  [routerLink]="['/']"><i class="fa fa-sign-out-alt"></i> <p>Logout</p></a>
+                  </li>
+                  </ul>
+    </div>
+  </div>
+</nav>
